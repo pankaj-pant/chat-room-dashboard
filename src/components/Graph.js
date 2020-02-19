@@ -10,17 +10,9 @@ import {
   DiscreteColorLegend
 } from "react-vis";
 
-const Graph = ({graphData}) => {
-    console.log("Graph rows", graphData)
-
-    const graphDataOne = () => {
-       return graphData.map(d => ({x: d.date, y: d.conversation_count}))
-    }
-    const graphDataTwo = () => {
-        return graphData.map(d => ({x: d.date, y: d.missed_chat_count}))
-    }
-    const graphDataThree = () => {
-        return graphData.map(d => ({x: d.date, y: d.visitors_with_conversation_count}))
+const Graph = ({data}) => {
+    const processData = (keyName) => {
+      return data.map(d => ({x: d.date, y: d[keyName]}))
     }
 
   return (
@@ -31,18 +23,14 @@ const Graph = ({graphData}) => {
         <DiscreteColorLegend items={[{title: "conversation_count"}, {title: "missed_chat_count"}, {title: "visitors_with_conversation_count"}]} orientation="horizontal"/>
         <XAxis />
         <YAxis title="Message count" />
-        
         <VerticalBarSeries
-          data={graphDataOne()}
-          
+          data={processData("conversation_count")}
         />
         <VerticalBarSeries
-          data={graphDataTwo()}
-       
+          data={processData("missed_chat_count")}
         />
         <VerticalBarSeries
-          data={graphDataThree()}
-    
+          data={processData("visitors_with_conversation_count")}
         />
       </FlexibleWidthXYPlot>
     </div>
