@@ -11,6 +11,7 @@ const Dial = ({ maxValue, value, currentValueText }) => {
       needleHeightRatio={0.7}
       needleTransitionDuration={4000}
       needleTransition="easeElastic"
+      needleColor="#7357FF"
       currentValueText={currentValueText}
       startColor="#FF9A4C"
       endColor="#9450FF"

@@ -48,19 +48,19 @@ const headCells = [
     id: "conversation_count",
     numeric: true,
     disablePadding: true,
-    label: "conversation_count"
+    label: "Conversation count"
   },
   {
     id: "visitors_with_conversation_count",
     numeric: true,
     disablePadding: false,
-    label: "visitors_with_conversation_count"
+    label: "Visitors with conversation count"
   },
   {
     id: "missed_chat_count",
     numeric: true,
     disablePadding: false,
-    label: "missed_chat_count"
+    label: "Missed chat count"
   }
 ];
 

@@ -23,9 +23,9 @@ const Graph = ({ data }) => {
         <VerticalGridLines />
         <DiscreteColorLegend
           items={[
-            { title: "Conversation count", color:"#38D09B" },
-            { title: "Missed chat count", color:"#FF9A4C" },
-            { title: "Visitors with conversation count", color:"#9450FF" }
+            { title: "Conversation count", color:"#38D09B", strokeWidth:5 },
+            { title: "Missed chat count", color:"#FF9A4C", strokeWidth:5 },
+            { title: "Visitors with conversation count", color:"#9450FF", strokeWidth:5 }
           ]}
           orientation="horizontal"
         />
