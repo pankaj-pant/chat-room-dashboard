@@ -1,7 +1,7 @@
 import React from "react";
 import ReactSpeedometer from "react-d3-speedometer";
 
-const Dial = ({maxValue, value, currentValueText}) => {
+const Dial = ({ maxValue, value, currentValueText }) => {
   return (
     <ReactSpeedometer
       maxValue={maxValue}
@@ -12,7 +12,7 @@ const Dial = ({maxValue, value, currentValueText}) => {
       needleTransitionDuration={4000}
       needleTransition="easeElastic"
       currentValueText={currentValueText}
-      startColor="#F79A4C"
+      startColor="#FF9A4C"
       endColor="#9450FF"
       height={200}
     />

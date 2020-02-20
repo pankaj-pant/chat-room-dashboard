@@ -14,8 +14,7 @@ import Graph from "./Graph";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 
-/* Table sorting functions*/
-
+/* Table sorting functions - Material UI*/
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -42,8 +41,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map(el => el[0]);
 }
 
-/* Table head */
-
+/* Table head data - Material UI */
 const headCells = [
   { id: "date", numeric: true, disablePadding: false, label: "Date" },
   {
@@ -66,6 +64,7 @@ const headCells = [
   }
 ];
 
+/* Function for rendering the Table Head - Material UI */
 function EnhancedTableHead(props) {
   const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = property => event => {
@@ -101,6 +100,7 @@ function EnhancedTableHead(props) {
   );
 }
 
+/* Table head prop type - Material UI */
 EnhancedTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
   onRequestSort: PropTypes.func.isRequired,
@@ -110,7 +110,6 @@ EnhancedTableHead.propTypes = {
 };
 
 /* Table styling */
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "95%",
@@ -133,19 +132,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-/* Table body */
-
+/* Function for rendering the Table */
 const DashboardTable = ({ chatData }) => {
+  /* Sorting and Pagination states */
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("calories");
   const [page, setPage] = useState(0);
+  /* Display graph or table state */
   const [isGraph, setIsGraph] = useState(false);
-  const [alert, setAlert] = useState({
+  /* Popup state */
+  const [popup, setPopup] = useState({
     open: false,
-    severity: "warning",
-    message: "This is a warning message!"
+    severity: "",
+    message: ""
   });
 
+  /* Functions for sorting and pagination */
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -156,13 +158,16 @@ const DashboardTable = ({ chatData }) => {
     setPage(newPage);
   };
 
-  const handleAlertClose = event => {
-    setAlert(false);
-  };
-
+  /* Function for switching data visualisation to either table or graph
+     also displays a warning when graph display has too much data which
+     affects readibility.
+     
+     !!!Console error 'Attribute Width' appears if more than 21 entries 
+     are displayed on the graph!!!
+  */
   const handleVisualizeData = () => {
     if (!isGraph && rows.length > 16) {
-      setAlert({
+      setPopup({
         open: true,
         severity: "warning",
         message: `Consider selecting a shorter date range (< 16 days) for better readibility!`
@@ -171,30 +176,42 @@ const DashboardTable = ({ chatData }) => {
     setIsGraph(!isGraph);
   };
 
-  let rows = [];
+  /* Function for rendering Visualise data button */
+  const visualiseDataButton = text => {
+    return (
+      <Button variant="contained" color="primary" style={{backgroundColor:"#7357FF"}} onClick={handleVisualizeData}>
+        {text}
+      </Button>
+    );
+  };
 
-  if (chatData) {rows = chatData;}
+  /* Function for closing popup */
+  const handleAlertClose = event => {
+    setPopup(false);
+  };
+
+  let rows = [];
+  if (chatData) {
+    rows = chatData;
+  }
 
   const rowsPerPage = 5;
-
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   const classes = useStyles();
- 
+
   return (
     <div className={classes.root}>
+      {/* Visualise data button */}
+      {isGraph
+        ? visualiseDataButton("Visualize Data as a Table")
+        : visualiseDataButton("Visualize Data as a Graph")}
+
       {isGraph ? (
-        <Button variant="contained" color="primary" onClick={handleVisualizeData}>
-          Visualize Data as a Table
-        </Button>
-      ) : (
-        <Button variant="contained" color="primary" onClick={handleVisualizeData}>
-          Visualize Data as a Graph
-        </Button>
-      )}
-      {isGraph ? (
+        /* Render Graph */
         <Graph data={rows} />
       ) : (
+        /* Render Table */
         <>
           <TableContainer>
             <Table
@@ -255,13 +272,18 @@ const DashboardTable = ({ chatData }) => {
           />
         </>
       )}
-      <Snackbar open={alert.open} autoHideDuration={5000} onClose={handleAlertClose}>
-        <Alert onClose={handleAlertClose} severity={alert.severity}>
-          {alert.message}
+      {/* Popup */}
+      <Snackbar
+        open={popup.open}
+        autoHideDuration={5000}
+        onClose={handleAlertClose}
+      >
+        <Alert onClose={handleAlertClose} severity={popup.severity}>
+          {popup.message}
         </Alert>
       </Snackbar>
     </div>
   );
-}
+};
 
-export default DashboardTable
+export default DashboardTable;
