@@ -18,11 +18,11 @@ b) Alternatively, the daily numbers can also be viewed in a graphical format. Fo
 
 ### 1. Clone the repo
 
-Clone the `XXX` repository locally. In a terminal, run:
+Clone the `chat-room-dashboard` repository locally. In a terminal, run:
 
 ```
-$ git clone XXXX
-$ cd XXXX
+$ git clone https://github.com/pankaj-pant/chat-room-dashboard
+$ cd chat-room-dashboard
 ```
 
 ### 2. Install the dependencies
