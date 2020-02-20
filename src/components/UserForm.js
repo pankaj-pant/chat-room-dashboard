@@ -18,7 +18,7 @@ const UserForm = ({ setChatData }) => {
     localStorage.getItem("startDateInLocalStorage") || "2017-05-01"
   );
   const [endDate, setEndDate] = useState(
-    localStorage.getItem("endDateInLocalStorage") || "2017-06-15"
+    localStorage.getItem("endDateInLocalStorage") || "2017-05-15"
   );
   const [token, setToken] = useState(
     localStorage.getItem("tokenInLocalStorage") || ""

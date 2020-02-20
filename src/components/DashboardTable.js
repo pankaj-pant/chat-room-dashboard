@@ -160,7 +160,7 @@ const DashboardTable = ({ chatData }) => {
 
   /* Function for switching data visualisation to either table or graph
      also displays a warning when graph display has too much data which
-     affects readibility.
+     affects readability.
      
      !!!Console error 'Attribute Width' appears if more than 21 entries 
      are displayed on the graph!!!
@@ -170,7 +170,7 @@ const DashboardTable = ({ chatData }) => {
       setPopup({
         open: true,
         severity: "warning",
-        message: `Consider selecting a shorter date range (< 16 days) for better readibility!`
+        message: `Consider selecting a shorter date range (< 16 days) for better readability!`
       });
     }
     setIsGraph(!isGraph);
