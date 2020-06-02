@@ -2,6 +2,8 @@
 
 A simple dashboard application built using React, for monitoring online chat room data. Fetches and displays data about visitor and chatroom statistics from an API.
 
+* [Live Demo](https://chat-room-dashboard.herokuapp.com/)
+
 User has to provide a date range (between 01.05.2017 - 15.06.2017), and the access token (38ab33b9f32a3478555d1e06189d50f01a872966) for the query to run successfully.
 
 After receiving response from the API, the app renders two major data display components.
@@ -25,22 +27,18 @@ $ git clone https://github.com/pankaj-pant/chat-room-dashboard
 $ cd chat-room-dashboard
 ```
 
-### 2. Install the dependencies
+### 2. Install the dependencies and build production version of app
 
-To install the dependencies, run the command:
+To install the dependencies and build a production version of the app, run the commands:
 
     $ yarn install
+    $ yarn build
 
 ### 3. Run the app
 
 This command serves the app at `http://localhost:8080/`
 
     $ yarn start
-
-
-
-# Links
-* [Live Demo](https://chat-room-dashboard.herokuapp.com/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
