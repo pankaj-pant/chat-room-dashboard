@@ -2,7 +2,7 @@
 
 A simple dashboard application built using React, for monitoring online chat room data. Fetches and displays data about visitor and chatroom statistics from an API.
 
-User has to provide a date range (between 01.05.2017 - 15.06.2017), and the access token for the query to run successfully.
+User has to provide a date range (between 01.05.2017 - 15.06.2017), and the access token (38ab33b9f32a3478555d1e06189d50f01a872966) for the query to run successfully.
 
 After receiving response from the API, the app renders two major data display components.
 1) On the top is a "Speedometer" display with three dials each representing data from the following fields: total_conversation_count, total_user_message_count and total_visitor_message_count. **Note:** When the screen width is smaller than 960px the dials are replaced with plain text panels instead for better readability.
@@ -33,7 +33,7 @@ To install the dependencies, run the command:
 
 ### 3. Run the app
 
-This command serves the app at `http://localhost:3000/`
+This command serves the app at `http://localhost:8080/`
 
     $ yarn start
 
